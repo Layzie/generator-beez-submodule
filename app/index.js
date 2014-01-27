@@ -143,6 +143,7 @@ BeezSubmoduleGenerator .prototype.app = function app() {
     skipMessage: true
   });
 
+  this.mkdir('img');
   this.template('index.js');
 
   if (this.props.model) {

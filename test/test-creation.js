@@ -24,6 +24,7 @@ describe('beez-submodule generator', function () {
   it('creates expected files', function (done) {
     var expected = [
       // add files you expect to exist here.
+      'img',
       'index.js',
       'model/index.js',
       'view/index.js',
