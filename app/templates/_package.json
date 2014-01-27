@@ -1,0 +1,29 @@
+{
+    "name": "<%= slugname %>",
+    "version": "0.0.0",
+    "description": "<%= props.description %>",
+    "author": {
+        "name": "<%= props.authorName %>",
+        "email": "<%= props.authorEmail %>"
+    },
+    "files": [
+        ""
+    ],
+    "keywords":[
+    ],
+    "dependencies": {
+    },
+    "peerDependencies": {
+        "beez": ">=1.0.9"
+    },
+    "devDependencies": {
+    },
+    "engines": {
+        "node": "~0.10.1",
+        "npm": "~1.1.0"
+    },
+    "os": [
+        "darwin",
+        "linux"
+    ]
+}

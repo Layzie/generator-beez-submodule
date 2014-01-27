@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - '0.10'
+before_install:
+  - currentfolder=${PWD##*/}
+  - if [ "$currentfolder" != 'generator-beez-submodule' ]; then cd .. && eval "mv $currentfolder generator-beez-submodule" && cd generator-beez-submodule; fi
+
