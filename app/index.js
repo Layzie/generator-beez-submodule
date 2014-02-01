@@ -10,7 +10,16 @@ var BeezSubmoduleGenerator = module.exports = function BeezSubmoduleGenerator(ar
   yeoman.generators.Base.apply(this, arguments);
 
   this.on('end', function () {
-    this.installDependencies({ skipInstall: options['skip-install'] });
+    // bower & npm install settings
+    this.installDependencies({
+      bower: false,
+      npm: true,
+      skipInstall: options['skip-install'],
+      skipMessage: true,
+      callback: function () {
+        fs.unlink('package.json');
+      }
+    });
   });
 
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -154,14 +163,6 @@ BeezSubmoduleGenerator.prototype.app = function app() {
   message += yellow + '  "require": "' + this.slugname + '/index' + '",\n';
   message += yellow + '  "xpath": "/@/' + this.slugname + '"\n';
   message += yellow + '}"\n';
-
-  // bower & npm install settings
-  this.installDependencies({
-    bower: false,
-    npm: true,
-    skipInstall: true,
-    skipMessage: true
-  });
 
   // if pass a argument make directory using argument name
   if (this.args.length > 0) {
