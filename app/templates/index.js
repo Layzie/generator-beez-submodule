@@ -31,7 +31,7 @@ define(function (require, exports, module) {
         '<%= slugname %>.Controller',
         {
             css: [
-                '/<%= slugname %>/styl/deck.css'
+                '/<%= slugname %>/styl/<%= slugname %>.css'
             ],
 
             i18n: function i18n() {
@@ -63,16 +63,13 @@ define(function (require, exports, module) {
                             // Setup browser
                             var $body = $('body');
                             var $mock = $('#mock');
-                            var $paris = $('#paris');
-                            $mock.html(""); // reset
+
+                            $mock.html(''); // reset
                             $body
                                 .css('background-color', '#323232')
                             ;
                             $mock
                                 .css('background-color', '#FFFFFF')
-                            ;
-                            $paris
-                                .css('margin-top', $mock.height())
                             ;
 
                             if (name === 'index') {
