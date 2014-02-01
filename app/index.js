@@ -157,7 +157,7 @@ BeezSubmoduleGenerator.prototype.app = function app() {
       message = '\u001b[31m' + 'Put below code in your configure file. (in conf directory)\n',
       directory;
 
-  message += yellow + '"search": {\n';
+  message += yellow + '"' + this.slugname + '": {\n';
   message += yellow + '  "route": "' + this.slugname + '",\n';
   message += yellow + '  "name": "' + this.slugname + '",\n';
   message += yellow + '  "require": "' + this.slugname + '/index' + '",\n';
