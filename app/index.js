@@ -2,6 +2,7 @@
 'use strict';
 var util = require('util');
 var path = require('path');
+var fs = require('fs');
 var yeoman = require('yeoman-generator');
 
 
@@ -18,7 +19,18 @@ var BeezSubmoduleGenerator = module.exports = function BeezSubmoduleGenerator(ar
 util.inherits(BeezSubmoduleGenerator, yeoman.generators.Base);
 
 BeezSubmoduleGenerator.prototype.askFor = function askFor() {
-  var cb = this.async();
+  var cb = this.async(),
+      moduleName = function moduleName() {
+        var name;
+
+        if (this.args.length > 0) {
+          name = this.args[0];
+        } else {
+          name = path.basename(process.cwd());
+        }
+
+        return name;
+      }.bind(this);
 
   // have Yeoman greet the user.
   console.log(this.yeoman);
@@ -27,9 +39,6 @@ BeezSubmoduleGenerator.prototype.askFor = function askFor() {
     type: 'checkbox',
     name: 'mvcr',
     message: 'Check necessary parts',
-    // choices: [
-    //   'Model', 'Collection', 'View'
-    // ],
     choices: [
       {
         name: 'Model',
@@ -56,13 +65,14 @@ BeezSubmoduleGenerator.prototype.askFor = function askFor() {
   }, {
     name: 'name',
     message: 'Submodule Name',
-    default: path.basename(process.cwd()),
+    default: moduleName,
     validate: function (w) {
       var done = this.async();
 
-      // if no name then show message.
-      if (!/[a-z-]/.test(w)) {
-        done('You should put lowercase alphabet in module name.');
+      // if directory is existed.
+      if (fs.existsSync(w)) {
+        done(w + ' has been already existed. The submodule should be have another name.');
+
         return;
       }
 
@@ -135,7 +145,8 @@ BeezSubmoduleGenerator.prototype.askFor = function askFor() {
 BeezSubmoduleGenerator.prototype.app = function app() {
   var submoduleName = this.props.name,
       yellow = '\u001b[33m',
-      message = '\u001b[31m' + 'Put below code in your configure file. (in conf directory)\n';
+      message = '\u001b[31m' + 'Put below code in your configure file. (in conf directory)\n',
+      directory;
 
   message += yellow + '"search": {\n';
   message += yellow + '  "route": "' + this.slugname + '",\n';
@@ -152,24 +163,33 @@ BeezSubmoduleGenerator.prototype.app = function app() {
     skipMessage: true
   });
 
-  this.mkdir('img');
-  this.template('index.js');
+  // if pass a argument make directory using argument name
+  if (this.args.length > 0) {
+    directory = this.slugname + '/';
+
+    this.mkdir(directory);
+  } else {
+    directory = '';
+  }
+
+  this.mkdir(directory + 'img');
+  this.template('index.js', directory + 'index.js');
 
   if (this.props.model) {
-    this.template('model/index.js');
+    this.template('model/index.js', directory + 'model/index.js');
   }
   if (this.props.collection) {
-    this.template('collection/index.js');
+    this.template('collection/index.js', directory + 'collection/index.js');
   }
   if (this.props.view) {
-    this.template('view/index.js');
+    this.template('view/index.js', directory + 'view/index.js');
   }
 
-  this.template('i18n/ja.js');
-  this.template('hbs/submodule.hbs', 'hbs/' + submoduleName + '.hbs');
-  this.template('styl/submodule.styl', 'styl/' + submoduleName + '.styl');
-  this.template('test/index.js');
-  this.template('mock.submodule.html.hbs', 'mock.' + submoduleName + '.html.hbs');
+  this.template('i18n/ja.js', directory + 'i18n/ja.js');
+  this.template('hbs/submodule.hbs', directory + 'hbs/' + submoduleName + '.hbs');
+  this.template('styl/submodule.styl', directory + 'styl/' + submoduleName + '.styl');
+  this.template('test/index.js', directory + 'test/index.js');
+  this.template('mock.submodule.html.hbs', directory + 'mock.' + submoduleName + '.html.hbs');
 
   console.log(message);
 };

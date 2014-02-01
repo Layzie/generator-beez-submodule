@@ -41,6 +41,12 @@ Finally, initiate the generator:
 $ yo beez-submodule
 ```
 
+if you want designate directroy, then put directory name on 1st argument.
+
+```sh
+$ yo beez-submodule foo
+```
+
 ### Getting To Know Yeoman
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.

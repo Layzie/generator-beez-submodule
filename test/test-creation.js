@@ -21,7 +21,7 @@ describe('beez-submodule generator', function () {
     }.bind(this));
   });
 
-  it('creates expected files', function (done) {
+  it('creates expected files(no argument)', function (done) {
     var expected = [
       // add files you expect to exist here.
       'img',
@@ -43,6 +43,37 @@ describe('beez-submodule generator', function () {
       'authorName': 'Octo Cat',
       'authorEmail': 'octo@example.com'
     });
+    this.app.run({}, function () {
+      helpers.assertFiles(expected);
+      done();
+    });
+  });
+
+  it('creates expected files(with argument)', function (done) {
+    var expected = [
+      // add files you expect to exist here.
+      'foo/img',
+      'foo/index.js',
+      'foo/model/index.js',
+      'foo/view/index.js',
+      'foo/collection/index.js',
+      'foo/i18n/ja.js',
+      'foo/hbs/foo.hbs',
+      'foo/styl/foo.styl',
+      'foo/test/index.js',
+      'foo/mock.foo.html.hbs'
+    ];
+
+    helpers.mockPrompt(this.app, {
+      'mvcr': ['Model', 'Collection', 'View'],
+      'name': 'foo',
+      'description': 'mypage submodule',
+      'authorName': 'Octo Cat',
+      'authorEmail': 'octo@example.com'
+    });
+
+    this.app.args = ['foo'];
+
     this.app.run({}, function () {
       helpers.assertFiles(expected);
       done();
