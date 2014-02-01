@@ -132,8 +132,17 @@ BeezSubmoduleGenerator.prototype.askFor = function askFor() {
   }.bind(this));
 };
 
-BeezSubmoduleGenerator .prototype.app = function app() {
-  var submoduleName = this.props.name;
+BeezSubmoduleGenerator.prototype.app = function app() {
+  var submoduleName = this.props.name,
+      yellow = '\u001b[33m',
+      message = '\u001b[31m' + 'Put below code in your configure file. (in conf directory)\n';
+
+  message += yellow + '"search": {\n';
+  message += yellow + '  "route": "' + this.slugname + '",\n';
+  message += yellow + '  "name": "' + this.slugname + '",\n';
+  message += yellow + '  "require": "' + this.slugname + '/index' + '",\n';
+  message += yellow + '  "xpath": "/@/' + this.slugname + '"\n';
+  message += yellow + '}"\n';
 
   // bower & npm install settings
   this.installDependencies({
@@ -161,8 +170,10 @@ BeezSubmoduleGenerator .prototype.app = function app() {
   this.template('styl/submodule.styl', 'styl/' + submoduleName + '.styl');
   this.template('test/index.js');
   this.template('mock.submodule.html.hbs', 'mock.' + submoduleName + '.html.hbs');
+
+  console.log(message);
 };
 
-BeezSubmoduleGenerator .prototype.projectfiles = function projectfiles() {
+BeezSubmoduleGenerator.prototype.projectfiles = function projectfiles() {
   this.template('_package.json', 'package.json');
 };
