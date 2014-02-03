@@ -16,6 +16,7 @@ define(function (require, exports, module) {
      * @see beez.Collection
      */
     var Collection = beez.Collection.extend(
+        // TODO: put your collection
         '<%= slugname %>.collection',
         {
             midx: '<%= slugname %>',
