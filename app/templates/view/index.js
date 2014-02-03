@@ -26,7 +26,6 @@ define(function (require, exports, module) {
             className: '<%= slugname %>',
             vidx: '<%= slugname %>',
 
-            //////
             initialize: function () {
                 // super
                 View.__super__.initialize.apply(this, arguments);
@@ -35,8 +34,6 @@ define(function (require, exports, module) {
             beforeOnce: function beforeOnce() {
                 this.getParent().$el.append(this.$el);
             },
-
-            /////
 
         });
 
