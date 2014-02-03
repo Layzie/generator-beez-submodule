@@ -159,7 +159,7 @@ BeezSubmoduleGenerator.prototype.app = function app() {
 
   message += yellow + '>>>>\n\t"' + this.slugname + '": {\n';
   message += yellow + '\t\t"route": "' + this.slugname + '",\n';
-  message += yellow + '\t\t"name": "' + this.slugname + '",\n';
+  message += yellow + '\t\t"name": "index",\n';
   message += yellow + '\t\t"require": "' + this.slugname + '/index' + '",\n';
   message += yellow + '\t\t"xpath": "/@/' + this.slugname + '"\n';
   message += yellow + '\t}\n<<<<\n';
