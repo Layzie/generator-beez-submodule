@@ -154,15 +154,15 @@ BeezSubmoduleGenerator.prototype.askFor = function askFor() {
 BeezSubmoduleGenerator.prototype.app = function app() {
   var submoduleName = this.props.name,
       yellow = '\u001b[33m',
-      message = '\u001b[31m' + 'Put below code in your configure file. (in conf directory)\n',
+      message = '\u001b[31m' + 'Appends the routing configuration - {ProjectDir}/conf/[env]/[key].json\n\n',
       directory;
 
-  message += yellow + '"' + this.slugname + '": {\n';
-  message += yellow + '  "route": "' + this.slugname + '",\n';
-  message += yellow + '  "name": "' + this.slugname + '",\n';
-  message += yellow + '  "require": "' + this.slugname + '/index' + '",\n';
-  message += yellow + '  "xpath": "/@/' + this.slugname + '"\n';
-  message += yellow + '}"\n';
+  message += yellow + '>>>>\n\t"' + this.slugname + '": {\n';
+  message += yellow + '\t\t"route": "' + this.slugname + '",\n';
+  message += yellow + '\t\t"name": "' + this.slugname + '",\n';
+  message += yellow + '\t\t"require": "' + this.slugname + '/index' + '",\n';
+  message += yellow + '\t\t"xpath": "/@/' + this.slugname + '"\n';
+  message += yellow + '\t}\n<<<<\n';
 
   // if pass a argument make directory using argument name
   if (this.args.length > 0) {
