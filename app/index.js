@@ -157,11 +157,12 @@ BeezSubmoduleGenerator.prototype.app = function app() {
       message = '\u001b[31m' + 'Put below code in your configure file. (in conf directory)\n',
       directory;
 
+  message += yellow + 'Appends the routing configuration - {ProjectDir}/conf/[env]/[key].json\n\n';
   message += yellow + '"' + this.slugname + '": {\n';
-  message += yellow + '  "route": "' + this.slugname + '",\n';
-  message += yellow + '  "name": "' + this.slugname + '",\n';
-  message += yellow + '  "require": "' + this.slugname + '/index' + '",\n';
-  message += yellow + '  "xpath": "/@/' + this.slugname + '"\n';
+  message += yellow + '\t  "route": "' + this.slugname + '",\n';
+  message += yellow + '\t  "name": "' + this.slugname + '",\n';
+  message += yellow + '\t  "require": "' + this.slugname + '/index' + '",\n';
+  message += yellow + '\t  "xpath": "/@/' + this.slugname + '"\n';
   message += yellow + '}"\n';
 
   // if pass a argument make directory using argument name
