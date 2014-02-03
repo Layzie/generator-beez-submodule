@@ -3,7 +3,10 @@
 var util = require('util');
 var path = require('path');
 var fs = require('fs');
+
 var yeoman = require('yeoman-generator');
+
+var colors = require('colors');
 
 
 var BeezSubmoduleGenerator = module.exports = function BeezSubmoduleGenerator(args, options, config) {
@@ -153,16 +156,19 @@ BeezSubmoduleGenerator.prototype.askFor = function askFor() {
 
 BeezSubmoduleGenerator.prototype.app = function app() {
   var submoduleName = this.props.name,
-      yellow = '\u001b[33m',
-      message = '\u001b[31m' + 'Appends the routing configuration - {ProjectDir}/conf/[env]/[key].json\n\n',
+      message = [],
+      colouredName = this.slugname.yellow,
       directory;
 
-  message += yellow + '>>>>\n\t"' + this.slugname + '": {\n';
-  message += yellow + '\t\t"route": "' + this.slugname + '",\n';
-  message += yellow + '\t\t"name": "index",\n';
-  message += yellow + '\t\t"require": "' + this.slugname + '/index' + '",\n';
-  message += yellow + '\t\t"xpath": "/@/' + this.slugname + '"\n';
-  message += yellow + '\t}\n<<<<\n';
+  message.push(
+    'Appends the routing configuration - {ProjectDir}/conf/[env]/[key].json\n'.underline.red,
+    '>>>>\n\t"'.yellow + colouredName + '": {'.yellow,
+    '\t\t"route": "'.yellow + colouredName + '",'.yellow,
+    '\t\t"name": "index",'.yellow,
+    '\t\t"require": "'.yellow + colouredName + '/index'.yellow + '",'.yellow,
+    '\t\t"xpath": "/@/'.yellow + colouredName + '"'.yellow,
+    '\t}\n<<<<\n'.yellow
+  );
 
   // if pass a argument make directory using argument name
   if (this.args.length > 0) {
@@ -192,7 +198,7 @@ BeezSubmoduleGenerator.prototype.app = function app() {
   this.template('test/index.js', directory + 'test/index.js');
   this.template('mock.submodule.html.hbs', directory + 'mock.' + submoduleName + '.html.hbs');
 
-  console.log(message);
+  console.log(message.join('\n'));
 };
 
 BeezSubmoduleGenerator.prototype.projectfiles = function projectfiles() {
