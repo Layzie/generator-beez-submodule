@@ -164,7 +164,7 @@ BeezSubmoduleGenerator.prototype.app = function app() {
     'Appends the routing configuration - {ProjectDir}/conf/[env]/[key].json\n'.underline.red,
     '>>>>\n\t"'.yellow + colouredName + '": {'.yellow,
     '\t\t"route": "'.yellow + colouredName + '",'.yellow,
-    '\t\t"name": "index",'.yellow,
+    '\t\t"name": "'.yellow + colouredName + 'Index",'.yellow,
     '\t\t"require": "'.yellow + colouredName + '/index'.yellow + '",'.yellow,
     '\t\t"xpath": "/@/'.yellow + colouredName + '"'.yellow,
     '\t}\n<<<<\n'.yellow
