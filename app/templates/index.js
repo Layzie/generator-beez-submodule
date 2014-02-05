@@ -47,39 +47,6 @@ define(function (require, exports, module) {
              */
             <%= slugname %>Index: function index() {
                 // TODO: index controller is here.
-            },
-
-            /**
-             * Test method for this submodule
-             * access url: http://0.0.0.0:1109/m/client/s/{module}/mock.{module}.local.develop.html#mock/{module}/test/index
-             * use `grunt foundation`
-             */
-            test: function test(name) {
-
-                if (DEBUG) {
-                    require(['mochai'], function (mochai) {
-                        beez.mochai.setup(null, function () { // Setup Mochai
-
-                            // Setup browser
-                            var $body = $('body');
-                            var $mock = $('#mock');
-
-                            $mock.html(''); // reset
-                            $body
-                                .css('background-color', '#323232')
-                            ;
-                            $mock
-                                .css('background-color', '#FFFFFF')
-                            ;
-
-                            if (name === 'index') {
-                                beez.mochai.addSuite(['<%= slugname %>/test/index'], function (name, suite) {
-                                    beez.mochai.run(['<%= slugname %>/test/index']);
-                                });
-                            }
-                        });
-                    });
-                }
             }
 
         })
