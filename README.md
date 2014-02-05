@@ -29,22 +29,18 @@ To install generator-beez-submodule from npm, run:
 $ npm install -g generator-beez-submodule
 ```
 
-Make your submodule directory.
+### Usage
 
 ```sh
-$ mkdir mypage
+$ mkdir mypage && $_ # Make your submodule directory & cd the directory.
+$ yo beez-submodule # make submodule.
 ```
 
-Finally, initiate the generator:
+or following way.
 
 ```sh
-$ yo beez-submodule
-```
-
-if you want designate directroy, then put directory name on 1st argument.
-
-```sh
-$ yo beez-submodule foo
+$ cd YOURPROJECTDIR # cd your root directory of your project.
+$ yo beez-submodule foo # put name on 1st argument, then make `foo` submodule directory.
 ```
 
 ### Getting To Know Yeoman
