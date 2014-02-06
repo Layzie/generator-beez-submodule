@@ -45,7 +45,7 @@ define(function (require, exports, module) {
              * @memberof Controller
              * @name <%= slugname %>Index
              */
-            <%= slugname %>Index: function index() {
+            <%= slugname %>Index: function <%= slugname %>Index() {
                 // TODO: index controller is here.
             }
 
