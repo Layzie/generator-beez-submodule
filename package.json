@@ -1,6 +1,6 @@
 {
   "name": "generator-beez-submodule",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A beez project submodule generator for Yeoman",
   "keywords": [
     "yeoman-generator",

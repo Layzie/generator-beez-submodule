@@ -43,6 +43,17 @@ $ cd YOURPROJECTDIR # cd your root directory of your project.
 $ yo beez-submodule foo # put name on 1st argument, then make `foo` submodule directory.
 ```
 
+#### subgenerator
+
+You can generat only a specific parts.
+
+```sh
+$ cd YOURPROJECTDIR/mypage # cd your root directory of your project.
+$ yo beez-submodule:controller foo # put name on 1st argument, then make `foo` controller.
+$ yo beez-submodule:view foo # put name on 1st argument, then make `foo` view.
+$ yo beez-submodule:model foo # put name on 1st argument, then make `foo` model.
+$ yo beez-submodule:collection foo # put name on 1st argument, then make `foo` collection.
+```
 ### Getting To Know Yeoman
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
