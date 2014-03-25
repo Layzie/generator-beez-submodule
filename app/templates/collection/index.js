@@ -5,6 +5,11 @@
  */
 
 define(function (require, exports, module) {
+    'use strict';
+
+    var beez = require('beez');
+    var mm = beez.manager.m;
+    var logger = beez.getLogger('<%= slugname %>.collection.index');
 
     /**
      * <%= slugname %> Collection class
